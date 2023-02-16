@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model StockPrice {
+  code        String   @unique
+  exchange    String
+  tradingDate DateTime
+  askPrice1   Float
+  askPrice2   Float
+  askPrice3   Float
+  askVol1     Float
+  askVol2     Float
+  askVol3     Float
+  bidPrice1   Float
+  bidPrice2   Float
+  bidPrice3   Float
+  bidVol1     Float
+  bidVol2     Float
+  bidVol3     Float
+  lastPrice   Float
+  totalVol    Float
+  refPrice    Float
+  unixTime    String
+}
+
+model Log {
+  id        String   @id @default(cuid())
+  log       String
+  createdAt DateTime @default(now())
+}
